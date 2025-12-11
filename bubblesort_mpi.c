@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     double start_time = 0.0;
     double end_time = 0.0;
 
-    int N = 16000;  // tamanho do vetor (pode ajustar)
+    int N = 60000;  // tamanho do vetor (pode ajustar)
     int *data = NULL;
     int local_n = N / size;
     int *local_data = (int *)malloc(local_n * sizeof(int));
@@ -48,17 +48,17 @@ int main(int argc, char **argv) {
     // Ordena localmente
     bubble_sort_local(local_data, local_n);
 
-    // Odd-even transposition sort (comunicação ponto a ponto)
-    // Odd-even transposition sort (comunicação ponto a ponto)
+
+
 for (int phase = 0; phase < size; phase++) {
     int parceiro;
 
-    if (phase % 2 == 0) {  // fase par
+    if (phase % 2 == 0) { 
         if (rank % 2 == 0)
             parceiro = rank + 1;
         else
             parceiro = rank - 1;
-    } else {              // fase ímpar
+    } else {              
         if (rank % 2 == 0)
             parceiro = rank - 1;
         else
@@ -69,7 +69,6 @@ for (int phase = 0; phase < size; phase++) {
 
         int *recv_data = (int *)malloc(local_n * sizeof(int));
 
-        // ⬇⬇⬇ AQUI ESTÁ A CORREÇÃO ⬇⬇⬇
         MPI_Sendrecv(
             local_data, local_n, MPI_INT,
             parceiro, 0,
