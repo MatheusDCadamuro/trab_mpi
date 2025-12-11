@@ -19,22 +19,22 @@ $(TARGET): $(SRC)
 
 # Execuções com diferentes números de processos
 run1:
-	mpirun -np 1 ./$(TARGET)
+	mpirun --allow-run-as-root --oversubscribe -np 1 ./$(TARGET)
 
 run2:
-	mpirun -np 2 ./$(TARGET)
+	mpirun --allow-run-as-root --oversubscribe -np 2 ./$(TARGET)
 
 run4:
-	mpirun -np 4 ./$(TARGET)
+	mpirun --allow-run-as-root --oversubscribe -np 4 ./$(TARGET)
 
 run6:
-	mpirun -np 6 ./$(TARGET)
+	mpirun --allow-run-as-root --oversubscribe -np 6 ./$(TARGET)
 
 run8:
-	mpirun -np 8 ./$(TARGET)
+	mpirun --allow-run-as-root --oversubscribe -np 8 ./$(TARGET)
 
 run16:
-	mpirun -np 16 ./$(TARGET)
+	mpirun --allow-run-as-root --oversubscribe -np 16 ./$(TARGET)
 
 # Rodar tudo em sequência
 run_all: run1 run2 run4 run6 run8 run16
